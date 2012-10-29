@@ -23,7 +23,7 @@ class WorkersController < ApplicationController
   def update
     require "digest/md5"
     pass = Digest::MD5.hexdigest(params[:password])
-    worker = Worker.find_by_id(params[:id])
+    worker = Worker.find_by_id(params[:worker_id])
     worker.update_attributes(:name => params[:name],
       :username => params[:username],
       :password => pass,
