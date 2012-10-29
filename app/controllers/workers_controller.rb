@@ -20,25 +20,14 @@ class WorkersController < ApplicationController
   def selectWorker
     @worker = Worker.all
   end
-  #def update
-   # require "digest/md5"
-    #pass = Digest::MD5.hexdigest(params[:password])
-    #worker = Worker.find_by_id(params[:id])
-    #worker.update_attributes(:name => params[:name],
-     # :username => params[:username],
-      #:password => pass,
-      #:department => params[:department])
-  #end
   def update
     require "digest/md5"
     pass = Digest::MD5.hexdigest(params[:password])
-    ne = params[:name]
-    un = params[:username]
-    dep = params[:department]
-    id = params[:worker_id]
-    @worker = Worker.find_by_id(id)
-    @worker = Worker.update_attribute(:name => ne, 
-      :username => un, :password => pass, :deparment => dep)
+    worker = Worker.find_by_id(params[:id])
+    worker.update_attributes(:name => params[:name],
+      :username => params[:username],
+      :password => pass,
+      :department => params[:department])
   end
   def delete
     id = params[:worker_id]
